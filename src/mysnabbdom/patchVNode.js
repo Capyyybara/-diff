@@ -16,11 +16,12 @@ export default function patchVNode(oldVnode, newVnode) {
     } else {
         // 新节点没有text属性
         if (oldVnode.children != undefined && oldVnode.children.length > 0) {
-            console.log("aa");
+            // console.log("aa");
             updateChildren(oldVnode.elm, oldVnode.children, newVnode.children);
         } else {
             oldVnode.elm.innerHTML = '';
             for (let i = 0; i < newVnode.children.length; i++) {
+                console.log(newVnode);
                 let dom = createElement(newVnode.children[i]);
                 oldVnode.elm.appendChild(dom);
             }

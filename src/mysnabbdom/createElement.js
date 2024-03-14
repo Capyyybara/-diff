@@ -1,6 +1,7 @@
 // 真正创建节点,将vnode创建为DOM,插入到pivot之前
 
 export default function createElement(vnode) {
+    // console.log(vnode);
     let domNode = document.createElement(vnode.sel);
     if (vnode.text != '' && (vnode.children == undefined || vnode.children.length == 0)) {
         domNode.innerText = vnode.text;

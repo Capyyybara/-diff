@@ -16,6 +16,7 @@ export default function patch(oldVnode, newVnode) {
         patchVNode(oldVnode, newVnode);
     } else {
         console.log(("不是同一个节点"));
+        console.log(oldVnode);
         let newVnodeElm = createElement(newVnode);
         if (oldVnode.elm.parentNode && newVnodeElm) {
             oldVnode.elm.parentNode.insertBefore(newVnodeElm, oldVnode.elm);
