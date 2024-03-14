@@ -13,7 +13,7 @@ export default function patch(oldVnode, newVnode) {
     if (oldVnode.key == newVnode.key && oldVnode.sel == newVnode.sel) {
         console.log('是同一个节点');
         //  判断新旧vnode是否是同一个对象
-        patchVNode(newVnode, oldVnode);
+        patchVNode(oldVnode, newVnode);
     } else {
         console.log(("不是同一个节点"));
         let newVnodeElm = createElement(newVnode);

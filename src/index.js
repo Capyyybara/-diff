@@ -11,10 +11,13 @@ const container = document.getElementById("container");
 patch(container, myVnode1);
 
 const myVnode2 = h('ul', {}, [
-    h('li', { key: 'A' }, "A"),
-    h('li', { key: 'B' }, 'B'),
+    h('li', { key: 'A' }, [
+        h("p", {}, '哈哈'),
+        h("p", {}, '哈哈'),
+        h("p", {}, '哈哈'),
+    ]),
+    h('li', { key: 'B' }, "B"),
     h('li', { key: 'C' }, 'C'),
-    h('li', { key: 'D' }, 'D'),
 ]);
 
 const btn = document.getElementById("btn");
