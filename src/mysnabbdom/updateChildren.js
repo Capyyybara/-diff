@@ -44,6 +44,8 @@ export default function updateChildren(parentElm, oldCh, newCh) {
             oldEndVnode = oldCh[--oldEndIdx];
             newStartVnode = newCh[++newStartIdx];
         } else {
+            // 四种都没有命中
+            // 制作一个旧对象
             if (!keyMap) {
                 keyMap = {};
                 for (let i = oldStartIdx; i <= oldEndIdx; i++) {
@@ -52,7 +54,6 @@ export default function updateChildren(parentElm, oldCh, newCh) {
                         keyMap[key] = i;
                     }
                 }
-
             }
             console.log(keyMap);
             const idxInOld = keyMap[newStartVnode.key];
@@ -77,17 +78,17 @@ export default function updateChildren(parentElm, oldCh, newCh) {
 
     // 循环结束后,start还是比end小
     if (newStartIdx <= newEndIdx) {
-        const before = newCh[newEndIdx + 1] == null ? null : newCh[newEndIdx + 1].elm;
+        // const before = newCh[newEndIdx + 1] == null ? null : newCh[newEndIdx + 1].elm;
+        // console.log(before);
         for (let i = newStartIdx; i <= newEndIdx; i++) {
             // insertBefore方法可以自动识别null , 如果是null就会自动排到队尾 , 和appendChild就一致了
             // newCh[i]现在还没有真正的DOM,所以要调用createElement
-            parentElm.insertBefore(createElement(newCh[i]), before);
+            parentElm.insertBefore(createElement(newCh[i]), oldCh[oldStartIdx]);
         }
     } else if (oldStartIdx <= oldEndIdx) {
         // old还有剩余节点没有处理
         // 批量删除oldStart和oldEnd指针之间的项
         for (let i = oldStartIdx; i <= oldEndIdx; i++) {
-            console.log(oldCh[i]);
             if (oldCh[i]) {
                 parentElm.removeChild(oldCh[i].elm);
             }
